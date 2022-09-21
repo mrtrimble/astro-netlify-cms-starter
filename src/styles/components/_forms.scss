@@ -1,0 +1,203 @@
+$form-group-spacer: 1.5rem !default;
+$form-field-width: 30ch !default;
+$form-text-color: "var(--color-text)" !default;
+$form-control-color: "var(--color-primary)" !default;
+$form-border-color: "currentColor" !default;
+$form-border-radius: 0.25em !default;
+$form-outline-style: dashed !default;
+$form-outline-color: currentColor !default;
+
+form {
+  --form-group-spacer: #{$form-group-spacer};
+  --form-field-width: #{$form-field-width};
+  --form-text-color: #{$form-text-color};
+  --form-border-color: #{$form-border-color};
+  --form-border-radius: #{$form-border-radius};
+  --form-outline-style: #{$form-outline-style};
+  --form-outline-color: #{$form-outline-color};
+  --form-background: var(--color-background);
+
+  color: var(--form-text-color);
+}
+
+.form-group {
+  + .form-group {
+    margin-block-start: var(--form-group-spacer);
+  }
+
+  label {
+    line-height: 1;
+
+    &:not(.form-control) {
+      display: block;
+    }
+
+    + .form-field {
+      margin-block-start: 0.5em;
+    }
+  }
+
+}
+
+.form-field {
+  --outline-style: var(--form-outline-style);
+  --outline-color: var(--form-outline-color);
+
+  width: 100%;
+  max-width: var(--form-field-width, 30ch);
+  border: 2px solid var(--form-border-color);
+  border-radius: var(--form-border-radius);
+  background-color: #fff;
+  color: inherit;
+  font-family: inherit;
+
+  // Prevent iOS input zoom
+  font-size: 16px;
+  font-size: max(16px, 1em);
+
+  &:not(textarea) {
+    height: 2.25rem;
+    line-height: 1;
+  }
+
+  &:not(.select) {
+    padding: 0.25em 0.5em;
+  }
+}
+
+.form-field.select {
+  --outline-size: max(2px, 0.08em);
+  --outline-style: var(--form-outline-style);
+  --outline-color: var(--form-outline-color);
+
+  display: grid;
+  position: relative;
+  grid-template-areas: "select";
+  align-items: center;
+
+  select,
+  &::after {
+    grid-area: select;
+  }
+
+  &::after {
+    content: "";
+    justify-self: end;
+    // Not correctly converted by postcss-logical :( 
+    // margin-inline-end: 0.5em;
+    margin-right: 0.5em;
+    width: 0.8em;
+    height: 0.5em;
+    background-color: currentColor;
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    pointer-events: none;
+  }
+
+  select {
+    appearance: none;
+    width: 100%;
+    margin: 0;
+    padding: 0 1.5em 0 0.5em;
+    border: none;
+    background-color: transparent;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: 1.2;
+    cursor: inherit;
+  }
+
+  @supports selector(:focus-within) {
+    select {
+      outline: none;
+    }
+
+    &:focus-within {
+      outline: var(--outline-size) var(--outline-style) var(--outline-color);
+      outline-offset: var(--outline-size);
+    }
+  }
+
+}
+
+.form-control {
+  display: inline-grid;
+  grid-template-columns: 1em 1fr;
+  gap: 0.5em;
+  // accent-color: #{$form-control-color};
+
+  input {
+    width: 1.15em;
+    height: 1.15em;
+    margin: 0;
+    border: 0.15em solid var(--form-border-color);
+
+    appearance: none;
+    // For iOS < 15
+    background-color: var(--form-background);
+
+    display: grid;
+    place-content: center;
+  }
+
+  [type="checkbox"] {
+    border-radius: var(--form-border-radius);
+
+    &::before {
+      content: "";
+      width: 0.65em;
+      height: 0.65em;
+      // background-color: #{$form-control-color};
+      clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+      transform: scale(0);
+      transform-origin: bottom left;
+      transition: 120ms transform ease-in-out;
+
+      // Print
+      box-shadow: inset 1em 1em #{$form-control-color};
+      // Windows High Contrast Mode
+      background-color: CanvasText;
+    }
+
+    &:checked::before {
+      transform: scale(1);
+    }
+  }
+
+  [type="radio"] {
+    border-radius: 50%;
+
+    &::before {
+      content: "";
+      width: 0.65em;
+      height: 0.65em;
+      background-color: #{$form-control-color};
+      border-radius: 50%;
+      transform: scale(0);
+      transition: 120ms transform ease-in-out;
+
+      // Print
+      box-shadow: inset 1em 1em #{$form-control-color};
+      // Windows High Contrast Mode
+      background-color: CanvasText;
+    }
+
+    &:checked::before {
+      transform: scale(1);
+    }
+  }
+}
+
+.form-error {
+  --form-outline-color: var(--color-error);
+
+  label,
+  &-text {
+    color: var(--color-error);
+  }
+
+  &-text {
+    display: block;
+    margin-block-start: 0.25em;
+  }
+}

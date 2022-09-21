@@ -1,0 +1,26 @@
+---
+import Layout from './Layout.astro';
+import { Image } from '@astrojs/image/components';
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.image}>
+  <main class="template-blog">
+    <header class="hero hero--image-stack layout-grid layout-grid--stack">
+      <Image src={frontmatter.image} alt={frontmatter.title} height="800" width="1200" />
+    </header>
+    <div class="container section">
+      <h2>{frontmatter.title}</h2>
+      <span>{frontmatter.date}</span>
+      <ul role="list" class="flex">
+        {frontmatter.tags.map((tag) => <li>{tag}</li>)}
+      </ul>
+    </div>
+    <header class="background-primary">
+      <div class="layout-grid layout-grid--stack"></div>
+    </header>
+    <article>
+      <slot />
+    </article>
+  </main>
+</Layout>

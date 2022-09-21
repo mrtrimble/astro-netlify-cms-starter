@@ -1,0 +1,83 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const allPosts = await Astro.glob('./posts/*.md');
+const latestPosts = allPosts.slice(-3);
+---
+
+<Layout title="My Site">
+  <header class="hero hero--image-stack layout-grid layout-grid--stack">
+    <img src="https://source.unsplash.com/LeG68PrXA6Y/1200x800" alt="" />
+    <div class="hero__content color-primary">
+      <h1>Astro Co.</h1>
+      <a href="#" class="button">Sign up now</a>
+    </div>
+  </header>
+
+  <main>
+    <article class="container section">
+      <h2>Why Choose Astro Co.</h2>
+      <div class="layout-grid layout-grid--auto-fit" style="--gap: 2rem">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, maxime perferendis fuga qui, exercitationem eos blanditiis impedit facilis
+          sint veritatis ea rem temporibus obcaecati provident numquam harum. Eius, veniam perspiciatis!
+        </p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Recusandae alias, illum deserunt est et itaque, cupiditate aspernatur, voluptatum
+          quas soluta totam dignissimos culpa similique natus.
+        </p>
+      </div>
+    </article>
+
+    <section class="background-primary section-padded">
+      <div class="container layout-grid layout-grid--auto-fit" style="--min: 30ch">
+        <aside role="note" class="content">
+          <h2 class="h3">Sign Up Today!</h2>
+          <ul>
+            <li>Lorem ipsum dolor sit amet consectetur.</li>
+            <li>Dicta veniam eum eaque omnis delectus.</li>
+            <li>Quo esse distinctio officiis. Enim, laudantium.</li>
+            <li>Nam ut culpa eum velit ad!</li>
+          </ul>
+        </aside>
+        <form action="" class="card">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-field" type="text" id="name" name="name" />
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input class="form-field" type="email" id="email" name="email" />
+          </div>
+          <div class="form-group">
+            <button type="submit" class="button">Sign Up</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="container">
+      <h2>From the Blog</h2>
+      <div
+        class="layout-grid layout-grid--auto-fill"
+        style="
+          --image-aspect-ratio: 3/2;
+          --ratio-unsupported-height: min(12rem, 25vh);
+        "
+      >
+        {
+          latestPosts.map((post) => (
+            <article class="card card--raise card--desaturate">
+              <img class="image image--fullwidth" src={post.frontmatter.image} alt={post.frontmatter.title} />
+              <h3 class="font-size-h4">{post.frontmatter.title}</h3>
+              <p>{post.frontmatter.description}</p>
+              <a href={post.url}>
+                Read more <span class="inclusively-hidden">of {post.frontmatter.title}</span>
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+</Layout>

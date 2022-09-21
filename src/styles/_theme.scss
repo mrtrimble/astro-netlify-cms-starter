@@ -1,0 +1,29 @@
+@use "color-tokens" as *;
+
+$color-links: "var(--color-primary)" !default;
+$color-gray-hue: $color-primary !default;
+$color-gray-hue: hue($color-gray-hue);
+$color-background: scale-color($color-primary, $lightness: 98%) !default;
+
+$font-family: "Noto Sans JP", system-ui, sans-serif !default;
+$font-weight-bold: 700 !default;
+
+:root {
+  @include color-tokens();
+
+  --color-links: #{$color-links};
+  --gray-medium: hsl(#{$color-gray-hue}, 15%, 50%);
+  --gray-light: hsl(#{$color-gray-hue}, 20%, 85%);
+  --color-background: #{$color-background};
+  --font-family: #{$font-family};
+  --font-weight-bold: #{$font-weight-bold};
+}
+
+a:not([class]) {
+  color: var(--color-links);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}

@@ -1,0 +1,150 @@
+.template-landing-page {
+  .container {
+    --container-max: 100ch;
+  }
+
+  form.card {
+    --form-field-width: 100%;
+    align-items: stretch;
+  }
+}
+
+.template-dashboard {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "nav main"
+    "nav footer";
+
+  header {
+    grid-area: header;
+
+    span {
+      font-size: 1.125rem;
+      font-weight: bold;
+    }
+  }
+
+  nav {
+    grid-area: nav;
+
+    a:not([class]) {
+      color: inherit;
+    }
+  }
+  
+  main {
+    grid-area: main;
+  }
+
+  footer {
+    grid-area: footer;
+    border-top: 1px solid var(--color-on-text);
+  }
+
+  nav,
+  main {
+    padding: 2rem;
+  }
+
+  header,
+  footer {
+    padding: 1rem;
+  }
+}
+
+.template-holy-grail {
+  display: grid;
+
+  nav,
+  main,
+  aside {
+    padding: 2rem;
+  }
+
+  header,
+  footer {
+    padding: 1rem;
+  }
+  
+  nav {
+    a {
+      color: inherit;
+    }
+  }
+
+  aside {
+    background-color: var(--color-on-text);
+
+    a {
+      color: inherit;
+    }
+  }
+
+  @media (min-width: 100ch) {
+    grid-template-areas: 
+      "header header header"
+      "nav main aside"
+      "footer footer footer";
+    grid-auto-rows: auto 1fr auto;
+    grid-auto-columns: 1fr minmax(50vw, 80ch) 1fr;
+
+    header {
+      grid-area: header;
+    }
+
+    nav {
+      grid-area: nav;
+    }
+
+    main {
+      grid-area: main;
+    }
+
+    aside {
+      grid-area: aside;
+    }
+
+    footer {
+      grid-area: footer;
+    }
+
+  }
+}
+
+.template-blog {
+
+  main {
+    // width: min(100ch, 100vw);
+    margin: 8vh auto;
+  }
+
+  article {
+    display: grid;
+    grid-template-columns:
+      [main-start]
+      1fr
+      [article-start]
+      min(100vw - 2rem, 80ch)
+      [article-end]
+      1fr
+      [main-end];
+    column-gap: 1rem;
+
+      > *:not(img) {
+        grid-column: article;
+      }
+
+      > img {
+        grid-column: main;
+        justify-self: center;
+        margin-block: 4vh;
+      }
+
+  }
+
+  .blog-image--limited-height {
+    --image-max-height: 60vh;
+  }
+
+}

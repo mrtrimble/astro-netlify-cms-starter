@@ -1,0 +1,31 @@
+/* 🛑 STOP!
+  Do not change this file directly.
+  Modify colors in src/_data/colors.cjs
+ */
+
+$color-primary: hsl(258, 75%, 50%) !default;
+$color-on-primary: hsl(0, 0%, 100%) !default;
+$color-error: hsl(350, 75%, 50%) !default;
+$color-on-error: hsl(352.5, 100%, 98.4%) !default;
+$color-text: hsl(258, 20%, 30%) !default;
+$color-on-text: hsl(255.79999999999995, 12.8%, 70.8%) !default;
+
+$base-color-tokens: ("primary", "error", "text");
+
+$color-tokens: (
+  "color-primary": $color-primary,
+  "color-on-primary": $color-on-primary,
+  "color-error": $color-error,
+  "color-on-error": $color-on-error,
+  "color-text": $color-text,
+  "color-on-text": $color-on-text
+) !default;
+
+@mixin color-tokens() {
+  --color-primary: #{$color-primary};
+  --color-on-primary: #{$color-on-primary};
+  --color-error: #{$color-error};
+  --color-on-error: #{$color-on-error};
+  --color-text: #{$color-text};
+  --color-on-text: #{$color-on-text};
+}

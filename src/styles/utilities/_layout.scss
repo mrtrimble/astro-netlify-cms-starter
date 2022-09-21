@@ -1,0 +1,36 @@
+.container {
+  --container-max: 80ch;
+  
+  // width: 80ch;
+  // max-width: 95vw;
+  width: min(var(--container-max), 95vw);
+  margin-inline: auto;
+}
+
+section,
+.section {
+  margin-block: 8vh;
+}
+
+.section-padded {
+  padding-block: 8vh;
+}
+
+.layout-flex {
+  --gap: 2rem;
+  --wrap: wrap;
+
+  display: flex;
+  flex-wrap: var(--wrap);
+  gap: var(--gap);
+}
+
+.inclusively-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+}

@@ -1,0 +1,23 @@
+{
+  "name": "astro-netlify-cms-starter",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "tokens": "npx a11y-color-tokens --outputDirPath=src/styles --colorTokensPath=src/_data/colors.cjs"
+  },
+  "dependencies": {
+    "@astrojs/image": "^0.7.0",
+    "@astrojs/sitemap": "^1.0.0",
+    "a11y-color-tokens": "^0.6.0",
+    "astro": "^1.2.6",
+    "astro-compress": "^1.0.8",
+    "astro-netlify-cms": "^0.2.0",
+    "sass": "^1.54.9"
+  }
+}

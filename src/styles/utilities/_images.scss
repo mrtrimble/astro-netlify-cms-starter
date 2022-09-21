@@ -1,0 +1,14 @@
+.image {
+  object-fit: cover;
+  height: var(--ratio-unsupported-height);
+  max-height: var(--image-max-height);
+  
+  @supports (aspect-ratio: 1) {
+    aspect-ratio: var(--image-aspect-ratio);
+    height: unset;
+  }
+
+  &--fullwidth {
+    width: 100%;
+  }
+}

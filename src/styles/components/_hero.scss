@@ -1,0 +1,45 @@
+.hero {
+  --hero-min-height: 30vh;
+  --hero-padding: 2rem;
+
+  display: grid;
+  min-height: var(--hero-min-height);
+  padding: var(--hero-padding);
+
+  a:not([class]) {
+    color: inherit;
+  }
+
+  &--centered {
+    place-content: center;
+    // prevent horizontal stretch of inline items like links
+    justify-items: center;
+    text-align: center;
+  }
+
+  &--image-stack {
+    --hero-padding: 0;
+    --hero-min-height: 0;
+    --hero-height: max(40vh, 15rem);
+
+    height: var(--hero-height);
+
+    img {
+      width: 100%;
+      height: var(--hero-height);
+      object-fit: cover;
+    }
+  }
+
+  &__content {
+    --content-text-align: center;
+    --content-padding: 1rem;
+
+    padding-inline: var(--content-padding);
+    text-align: var(--content-text-align);
+
+    :only-child {
+      margin: 0;
+    }
+  }
+}

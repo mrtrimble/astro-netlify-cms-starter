@@ -1,0 +1,17 @@
+@font-face {
+  font-family: "Noto Sans JP";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Noto Sans JP Regular"), local("Noto-Sans-JP-Regular"),
+    url("../fonts/noto-sans-regular.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Sans JP";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Noto Sans JP Bold"), local("Noto-Sans-JP-Bold"),
+    url("../fonts/noto-sans-700.woff2") format("woff2");
+  font-display: swap;
+}

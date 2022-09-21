@@ -1,0 +1,24 @@
+---
+import { Image } from '@astrojs/image/components';
+export interface Props {
+  title: string;
+  body: string;
+  href: string;
+	image: string;
+}
+
+const { href, title, body, image } = Astro.props;
+---
+
+<li class="card">
+	<Image src={image} alt={title} width="600" height="300" fit="cover" format="webp" quality={100} />
+  <a href={href}>
+    <h2>
+      {title}
+      <span>&rarr;</span>
+    </h2>
+  </a>
+	<p>
+		{body}
+	</p>
+</li>

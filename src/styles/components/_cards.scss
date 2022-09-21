@@ -1,0 +1,64 @@
+// $card-gutter: "1.5rem" !default;
+$card-gutter: "clamp(1.25rem, 5%, 1.75rem)" !default;
+$card-radius: "0.5rem" !default;
+
+$card-gutter-var: "var(--card-gutter, #{$card-gutter})";
+$card-radius-var: "var(--card-radius, #{$card-radius})";
+
+.card {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--card-gap, 1rem);
+
+  background-color: var(--card-background, #fff);
+  box-shadow: 0 0.25rem 0.45rem -0.15rem rgba(0, 0, 0, 0.5);
+  border-radius: #{$card-radius-var};
+
+  > :is(h1, h2, h3, h4) {
+    margin-block-end: 0;
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  > :first-child:not(img) {
+    margin-block-start: #{$card-gutter-var};
+  }
+
+  > *:not(img) {
+    margin-inline: #{$card-gutter-var};
+  }
+
+  > :last-child:not(img) {
+    margin-block-end: #{$card-gutter-var};
+  }
+
+  > img:first-child {
+    border-radius: #{$card-radius-var} #{$card-radius-var} 0 0;
+  }
+
+  > img:last-child {
+    border-radius: 0 0 #{$card-radius-var} #{$card-radius-var};
+  }
+
+  > :is(.button, .layout-flex, a):last-child {
+    margin-block-start: auto;
+  }
+
+  // accessible clickable card
+  > :is(h1, h2, h3, h4) a,
+  > .button:only-of-type {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+    }
+  }
+}

@@ -1,0 +1,85 @@
+$button-default-color: "primary" !default;
+$button-colors: "error", "text" !default;
+
+.button {
+  --button-background: var(--color-#{$button-default-color});
+  --button-color: var(--color-on-#{$button-default-color});
+  --outline-color: transparent;
+  // --outline-color: var(--button-background);
+  // --outline-offset: -4px;
+
+  // Reset for links
+  text-decoration: none;
+
+  // Reset for buttons
+  border: 2px solid transparent;
+  font-family: inherit;
+  cursor: pointer;
+
+  // Display
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+
+  // Visual
+  background-color: var(--button-background);
+  color: var(--button-color);
+  
+  &:not(.button--icon) {
+    border-radius: 0.5rem;
+
+    // Size
+    padding: 0.5em 0.75em;
+    min-width: 10ch;
+  }
+
+  // Text
+  text-align: center;
+  line-height: 1;
+  font-weight: bold;
+
+  &:hover,
+  &:active {
+    background-color: var(--button-color);
+    color: var(--button-background);
+    
+    &:not(.button--outlined) {
+      border-color: currentColor;
+    }
+  }
+
+  @each $color in $button-colors {
+    &--#{$color} {
+      --button-background: var(--color-#{$color});
+      --button-color: var(--color-on-#{$color});
+    }
+  }
+
+  &--outlined {
+    --button-focus-inner: var(--button-background);
+    --button-focus-outer: var(--button-color);
+
+    border-color: var(--button-color);
+  }
+
+  &:focus-visible {
+    box-shadow: 0 0 0 max(0.15em, 2px)
+        var(--button-focus-inner, var(--button-color)),
+      0 0 0 max(0.3em, 2px) var(--button-focus-outer, var(--button-background));
+  }
+
+  &__icon {
+    width: 1em;
+    height: 1em;
+  }
+
+  &--icon {
+    --_icon-button-size: 3rem;
+
+    border-radius: 50%;
+
+    height: var(--icon-button-size, var(--_icon-button-size));
+    width: var(--icon-button-size, var(--_icon-button-size));
+  }
+}

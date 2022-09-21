@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Card from '../../components/Card.astro';
+
+export async function getStaticPaths({ paginate }) {
+  const allPosts = await Astro.glob('./*.md');
+  return paginate(allPosts, { pageSize: 6 });
+}
+
+const { page } = Astro.props;
+---
+
+<Layout title="All Posts">
+  <main class="template-blog">
+    <div class="container section">
+      <h1>All Posts</h1>
+      <div
+        class="layout-grid layout-grid--auto-fill"
+        style="
+          --image-aspect-ratio: 3/2;
+          --ratio-unsupported-height: min(12rem, 25vh);
+        "
+      >
+        {
+          page.data.map((post) => (
+            <Card image={post.frontmatter.image} title={post.frontmatter.title} href={post.url} body={post.frontmatter.description} />
+          ))
+        }
+      </div>
+    </div>
+    <div class="container section">
+      {
+        page.url.prev ? (
+          <a class="button" href={page.url.prev}>
+            Previous
+          </a>
+        ) : null
+      }
+
+      {
+        page.url.next ? (
+          <a class="button" href={page.url.next}>
+            Next
+          </a>
+        ) : null
+      }
+    </div>
+  </main>
+</Layout>
